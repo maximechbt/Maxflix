@@ -26,11 +26,16 @@ const theme = createTheme({
   textVariants: {
     title: {
       color: "text",
-      fontSize: 25,
+      fontSize: 30,
       textShadowOffset: { width: 2, height: 2 },
       textShadowRadius: 10,
       textShadowColor: "mainBackground",
       fontWeight: "bold",
+    },
+    subtitle: {
+      fontSize: 22,
+      fontWeight: "bold",
+      color: "text",
     },
   },
 });

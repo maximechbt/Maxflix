@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
 import {
   StyleSheet,
@@ -8,24 +8,22 @@ import {
 } from "react-native";
 
 import { Media } from "../types/media.type";
-import Text from "./Text.component";
+import { getTmdbBannerImageUrl } from "../utils/media.utils";
+import { Text } from "./Text.component";
 
 export default function MediaBanner({
   media,
-  overrideUrl = false,
-}: React.PropsWithChildren<{ media: Media; overrideUrl?: boolean }>) {
-  const navigation = useNavigation();
+}: React.PropsWithChildren<{ media: Media }>) {
+  //const navigation = useNavigation();
   return (
     <Pressable
       style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1.0 }]}
-    // onPress={() => navigation.navigate("MediaModal", { media })}
+      // onPress={() => navigation.navigate("MediaModal", { media })}
     >
       <ImageBackground
         style={[styles.image]}
         source={{
-          uri: overrideUrl
-            ? media.poster_path
-            : `https://image.tmdb.org/t/p/original/${media?.backdrop_path}?&language=fr-FR`,
+          uri: getTmdbBannerImageUrl(media),
         }}
       >
         <Text variant="title">{media.title}</Text>

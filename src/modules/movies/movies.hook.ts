@@ -7,3 +7,6 @@ export const useTrendingMovies = () =>
   useQuery("trendingMovies", MovieService.getTrendingMovies, {
     select: (data) => getMediaWithBest<Movie>(data),
   });
+
+export const usePopularMovies = () =>
+  useQuery("popularMovies", MovieService.getPopularMovies);

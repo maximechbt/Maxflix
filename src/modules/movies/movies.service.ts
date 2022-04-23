@@ -69,4 +69,8 @@ export const MovieService = {
       }))
     );
   },
+  getPopularMovies: async (): Promise<Movie[]> => {
+    const { data } = await TraktInstance.get("/movies/popular?limit=25");
+    return populateWithTMDB(data);
+  },
 };

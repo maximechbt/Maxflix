@@ -14,10 +14,6 @@ type TMDBShow = {
 
 export interface Show extends Media { }
 
-type Season = {
-  number: number;
-};
-
 export type SonarrShow = {
   id: number;
   title: string;
@@ -81,5 +77,9 @@ export const ShowService = {
         watchers: item.watchers,
       }))
     );
+  },
+  getPopularShows: async (): Promise<Show[]> => {
+    const { data } = await TraktInstance.get("/shows/popular?limit=25");
+    return populateWithTMDB(data);
   },
 };
