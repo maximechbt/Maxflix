@@ -1,4 +1,4 @@
-import { Media } from "../../shared/types/media.type";
+import { Media } from "../media.type";
 
 export type TMDBShow = {
   backdrop_path: string;
@@ -6,6 +6,7 @@ export type TMDBShow = {
   original_title: string;
   overview: string;
   name: string;
+  genres: { id: number; name: string }[];
 };
 
 export interface Show extends Media { }

@@ -15,6 +15,7 @@ import {
   RootTabScreenProps,
 } from "../../../types";
 import HomeScreen from "../../modules/home/Home.screen";
+import MediaScreen from "../../modules/media/screens/Media.screen";
 import { useCustomTheme } from "../themes/theme";
 import LinkingConfiguration from "./LinkingConfiguration";
 
@@ -52,6 +53,11 @@ function RootNavigator() {
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Media"
+        component={MediaScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

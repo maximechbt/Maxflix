@@ -1,10 +1,10 @@
 import * as React from "react";
 import { FlatList } from "react-native";
 
-import { Media } from "../types/media.type";
-import { Container } from "./Container.component";
+import { Container } from "../../../shared/components/Container.component";
+import { Text } from "../../../shared/components/Text.component";
+import { Media } from "../../../shared/types/media.type";
 import MediaPoster from "./MediaPoster.component";
-import { Text } from "./Text.component";
 
 export default function MediasPreview({
   title,

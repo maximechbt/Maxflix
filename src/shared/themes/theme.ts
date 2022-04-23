@@ -3,8 +3,9 @@ import { createTheme, useTheme } from "@shopify/restyle";
 const palette = {
   red: "#D81F26",
   black: "black",
-  grey: "#0B0B0B",
   white: "#F0F2F3",
+  greyWhite: "#D0D0D0",
+  greyTransparent: "rgba(95, 88, 83, 0.45)",
 };
 
 const theme = createTheme({
@@ -12,10 +13,12 @@ const theme = createTheme({
     mainBackground: palette.black,
     accent: palette.red,
     text: palette.white,
+    textDescription: palette.greyWhite,
+    chipsBackground: palette.greyTransparent,
   },
   spacing: {
-    s: 8,
-    m: 16,
+    s: 6,
+    m: 12,
     l: 24,
     xl: 40,
   },
@@ -33,9 +36,17 @@ const theme = createTheme({
       fontWeight: "bold",
     },
     subtitle: {
-      fontSize: 22,
+      fontSize: 18,
       fontWeight: "bold",
       color: "text",
+    },
+    defaults: {
+      fontSize: 14,
+      color: "text",
+    },
+    description: {
+      fontSize: 16,
+      color: "textDescription",
     },
   },
 });

@@ -3,10 +3,13 @@ import { FlatList, ScrollView } from "react-native";
 
 import { RootTabScreenProps } from "../../../types";
 import { Container } from "../../shared/components/Container.component";
-import MediaBanner from "../../shared/components/MediaBanner.component";
-import MediasPreview from "../../shared/components/MediasPreview.component";
-import { usePopularMovies, useTrendingMovies } from "../movies/movies.hook";
-import { usePopularShows, useTrendingShows } from "../shows/shows.hook";
+import MediaBanner from "../media/components/MediaBanner.component";
+import MediasPreview from "../media/components/MediasPreview.component";
+import {
+  usePopularMovies,
+  useTrendingMovies,
+} from "../media/movies/movies.hook";
+import { usePopularShows, useTrendingShows } from "../media/shows/shows.hook";
 
 export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
   const { data: trendingShows } = useTrendingShows();

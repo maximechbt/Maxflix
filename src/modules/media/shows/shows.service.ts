@@ -1,8 +1,8 @@
 import compact from "lodash/compact";
 
-import { TMDBInstance } from "../../shared/api/tmdb.api";
-import { TraktInstance } from "../../shared/api/trakt.api";
-import { TraktMedia } from "../../shared/types/media.type";
+import { TMDBInstance } from "../../../shared/api/tmdb.api";
+import { TraktInstance } from "../../../shared/api/trakt.api";
+import { TraktMedia } from "../media.type";
 import { Show, TMDBShow } from "./shows.type";
 
 async function populateWithTMDB(shows: TraktMedia[]): Promise<Show[]> {
@@ -16,6 +16,7 @@ async function populateWithTMDB(shows: TraktMedia[]): Promise<Show[]> {
             year: show.year,
             ids: show.ids,
             watchers: show.watchers,
+            ...TMDBShow,
             backdrop_path: TMDBShow.backdrop_path,
             poster_path: TMDBShow.poster_path,
             overview: TMDBShow.overview,

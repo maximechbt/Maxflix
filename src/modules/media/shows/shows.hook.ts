@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 
-import { getMediaWithBest } from "../../shared/utils/media.utils";
+import { getMediaWithBest } from "../components/media.utils";
 import { ShowService } from "./shows.service";
 import { Show } from "./shows.type";
 

@@ -1,4 +1,4 @@
-// import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
 import {
   StyleSheet,
@@ -7,18 +7,18 @@ import {
   Pressable,
 } from "react-native";
 
-import { Media } from "../types/media.type";
-import { getTmdbBannerImageUrl } from "../utils/media.utils";
-import { Text } from "./Text.component";
+import { Text } from "../../../shared/components/Text.component";
+import { Media } from "../../../shared/types/media.type";
+import { getTmdbBannerImageUrl } from "./media.utils";
 
 export default function MediaBanner({
   media,
 }: React.PropsWithChildren<{ media: Media }>) {
-  //const navigation = useNavigation();
+  const navigation = useNavigation();
   return (
     <Pressable
       style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1.0 }]}
-      // onPress={() => navigation.navigate("MediaModal", { media })}
+      onPress={() => navigation.navigate("Media", { media })}
     >
       <ImageBackground
         style={[styles.image]}

@@ -16,11 +16,11 @@ export default function App() {
     return null;
   } else {
     return (
-      <SafeAreaProvider>
+      <SafeAreaProvider style={{ backgroundColor: "black" }}>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme}>
             <Navigation colorScheme={"dark"} />
-            <StatusBar />
+            <StatusBar hidden={true} />
           </ThemeProvider>
         </QueryClientProvider>
       </SafeAreaProvider>

@@ -1,0 +1,66 @@
+import * as React from "react";
+import {
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  ScrollView,
+} from "react-native";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  Easing,
+} from "react-native-reanimated";
+
+import { RootStackScreenProps } from "../../../../types";
+import { Button } from "../../../shared/components/Button.component";
+import { Container } from "../../../shared/components/Container.component";
+import { Text } from "../../../shared/components/Text.component";
+import { View } from "../../../shared/components/View.components";
+import MediaPresentationImage from "../components/MediaPresentationImage.component";
+
+export default function MediaScreen({
+  navigation,
+  route,
+}: RootStackScreenProps<"Media">) {
+  const {
+    params: { media },
+  } = route;
+  const imageHeight = useSharedValue(550);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      height: withTiming(imageHeight.value, {
+        duration: 300,
+        easing: Easing.bezier(0, 0.25, 0.75, 1),
+      }),
+    };
+  });
+
+  function onScroll(_e: NativeSyntheticEvent<NativeScrollEvent>) {
+    imageHeight.value = 350;
+  }
+
+  return (
+    <Container paddingBottom="m">
+      <ScrollView onScroll={onScroll} stickyHeaderIndices={[0]}>
+        <Container>
+          <Animated.View style={[[animatedStyle]]}>
+            <MediaPresentationImage media={media} />
+          </Animated.View>
+          <View marginVertical="l" marginHorizontal="m" marginTop="s">
+            <Button
+              label="Ajouter à la bibliothèque"
+              onPress={() => console.log("test")}
+            />
+          </View>
+        </Container>
+        <Text paddingHorizontal="m" paddingVertical="s" variant={"subtitle"}>
+          Synopsys
+        </Text>
+        <Text paddingHorizontal="m" paddingVertical="s" variant={"description"}>
+          {media.overview}
+        </Text>
+      </ScrollView>
+    </Container>
+  );
+}

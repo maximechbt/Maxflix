@@ -23,4 +23,5 @@ export type Media = {
   };
   trackObject: TraktMedia;
   type: string;
+  genres: { id: number; name: string }[];
 };

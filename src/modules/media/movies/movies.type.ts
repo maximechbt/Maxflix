@@ -1,10 +1,11 @@
-import { Media } from "../../shared/types/media.type";
+import { Media } from "../media.type";
 
 export type TMDBMovie = {
   backdrop_path: string;
   poster_path: string;
   overview: string;
   title: string;
+  genres: { id: number; name: string }[];
 };
 
 export interface Movie extends Media { }
