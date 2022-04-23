@@ -2,32 +2,8 @@ import compact from "lodash/compact";
 
 import { TMDBInstance } from "../../shared/api/tmdb.api";
 import { TraktInstance } from "../../shared/api/trakt.api";
-import { Media, TraktMedia } from "../../shared/types/media.type";
-
-type TMDBMovie = {
-  backdrop_path: string;
-  poster_path: string;
-  overview: string;
-  title: string;
-};
-
-export interface Movie extends Media { }
-
-export type RadarrMovie = {
-  id: number;
-  title: string;
-  tmdbId: number;
-  sizeOnDisk: number;
-  monitored: boolean;
-  hasFile: boolean;
-  added: Date;
-  images: {
-    coverType: "poster" | "fanart";
-    remoteUrl: string;
-  }[];
-  imdbId: string;
-  type: "movie";
-};
+import { TraktMedia } from "../../shared/types/media.type";
+import { Movie, TMDBMovie } from "./movies.type";
 
 export async function getTMDBMovie(id: number): Promise<TMDBMovie> {
   const { data } = await TMDBInstance.get(`/movie/${id}`);

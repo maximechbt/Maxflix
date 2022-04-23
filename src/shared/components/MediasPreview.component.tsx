@@ -1,8 +1,7 @@
 import * as React from "react";
 import { FlatList } from "react-native";
 
-import { Movie } from "../../modules/movies/movies.service";
-import { Show } from "../../modules/shows/shows.service";
+import { Media } from "../types/media.type";
 import { Container } from "./Container.component";
 import MediaPoster from "./MediaPoster.component";
 import { Text } from "./Text.component";
@@ -12,7 +11,7 @@ export default function MediasPreview({
   medias,
 }: React.PropsWithChildren<{
   title: string;
-  medias?: Movie[] | Show[];
+  medias?: Media[];
 }>) {
   return (
     <Container height={240}>

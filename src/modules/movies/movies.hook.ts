@@ -1,7 +1,8 @@
 import { useQuery } from "react-query";
 
 import { getMediaWithBest } from "../../shared/utils/media.utils";
-import { Movie, MovieService } from "./movies.service";
+import { MovieService } from "./movies.service";
+import { Movie } from "./movies.type";
 
 export const useTrendingMovies = () =>
   useQuery("trendingMovies", MovieService.getTrendingMovies, {

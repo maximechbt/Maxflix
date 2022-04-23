@@ -2,42 +2,8 @@ import compact from "lodash/compact";
 
 import { TMDBInstance } from "../../shared/api/tmdb.api";
 import { TraktInstance } from "../../shared/api/trakt.api";
-import { Media, TraktMedia } from "../../shared/types/media.type";
-
-type TMDBShow = {
-  backdrop_path: string;
-  poster_path: string;
-  original_title: string;
-  overview: string;
-  name: string;
-};
-
-export interface Show extends Media { }
-
-export type SonarrShow = {
-  id: number;
-  title: string;
-  tmdbId: number;
-  monitored: boolean;
-  added: Date;
-  images: {
-    coverType: "poster" | "fanart";
-    remoteUrl: string;
-  }[];
-  imdbId: string;
-  seasons: {
-    seasonNumber: number;
-    monitored: boolean;
-    statistics: {
-      nextAiring?: Date;
-      episodeFileCount: number;
-      episodeCount: number;
-      totalEpisodeCount: number;
-      sizeOnDisk: number;
-    };
-  }[];
-  type: "show";
-};
+import { TraktMedia } from "../../shared/types/media.type";
+import { Show, TMDBShow } from "./shows.type";
 
 async function populateWithTMDB(shows: TraktMedia[]): Promise<Show[]> {
   return compact(
