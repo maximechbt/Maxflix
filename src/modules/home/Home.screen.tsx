@@ -1,25 +1,27 @@
-import { StyleSheet, Text, View } from "react-native";
+import { compact } from "lodash";
+import { FlatList, ScrollView } from "react-native";
 
-import { RootTabScreenProps } from "../../types";
+import { RootTabScreenProps } from "../../../types";
+import { Container } from "../../shared/components/Container.component";
+import MediaBanner from "../../shared/components/MediaBanner.component";
+import { useTrendingMovies } from "../movies/movies.hook";
+import { useTrendingShows } from "../shows/shows.hook";
 
-export default function TabOneScreen({
-  navigation,
-}: RootTabScreenProps<"Home">) {
+export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
+  const { data: trendingShows } = useTrendingShows();
+  const { data: trendingMovies } = useTrendingMovies();
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
-    </View>
+    <Container>
+      <ScrollView>
+        <FlatList
+          data={compact([trendingShows?.best, trendingMovies?.best])}
+          pagingEnabled={true}
+          horizontal={true}
+          keyExtractor={(media) => media?.ids.slug}
+          renderItem={({ item }) => <MediaBanner media={item} />}
+        />
+      </ScrollView>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-});
