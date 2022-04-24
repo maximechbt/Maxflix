@@ -20,7 +20,7 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme}>
             <Navigation colorScheme={"dark"} />
-            <StatusBar hidden={true} />
+            <StatusBar backgroundColor="transparent" style="light" />
           </ThemeProvider>
         </QueryClientProvider>
       </SafeAreaProvider>

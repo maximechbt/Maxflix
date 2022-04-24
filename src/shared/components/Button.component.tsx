@@ -23,9 +23,8 @@ export const Button = ({
       onPress={onPress}
     >
       <LinearGradient
-        // Button Linear Gradient
-        colors={[colors.accent, "#9a262a", "#281818"]}
-        locations={[0, 0.15, 0.95]}
+        colors={["#e2363d", colors.accent, "#9c161b"]}
+        locations={[0, 0.2, 0.55]}
         start={[0, 1]}
         end={[1, 0]}
         style={{
@@ -35,7 +34,9 @@ export const Button = ({
           justifyContent: "center",
         }}
       >
-        <Text fontSize={16}>{label}</Text>
+        <Text fontSize={16} fontWeight={"700"}>
+          {label}
+        </Text>
       </LinearGradient>
     </Pressable>
   );

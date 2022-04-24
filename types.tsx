@@ -10,7 +10,7 @@ import {
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { Media } from "./src/shared/types/media.type";
+import { Media } from "./src/modules/media/media.type";
 
 declare global {
   namespace ReactNavigation {
@@ -31,6 +31,9 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
 export type RootTabParamList = {
   Home: undefined;
   Search: undefined;
+  Discover: undefined;
+  Profil: undefined;
+  Favorite: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =

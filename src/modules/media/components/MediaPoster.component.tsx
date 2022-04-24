@@ -2,8 +2,8 @@ import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
 import { Image, Pressable, StyleSheet } from "react-native";
 
-import { Media } from "../../../shared/types/media.type";
-import { getTmdbPosterImageUrl } from "./media.utils";
+import { Media } from "../media.type";
+import { getTmdbPosterImageUrl } from "./../media.utils";
 
 export default function MediaPoster({
   item,
@@ -28,6 +28,6 @@ const styles = StyleSheet.create({
   image: {
     margin: 5,
     resizeMode: "cover",
-    borderRadius: 5,
+    borderRadius: 10,
   },
 });

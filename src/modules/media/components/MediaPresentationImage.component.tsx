@@ -1,20 +1,23 @@
 import { LinearGradient } from "expo-linear-gradient";
 import * as React from "react";
 import { StyleSheet, ImageBackground, Dimensions } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { BackButton } from "../../../shared/components/BackButton.component";
 import { Chips } from "../../../shared/components/Chips.component";
 import { Text } from "../../../shared/components/Text.component";
 import { View } from "../../../shared/components/View.components";
 import { Media } from "../media.type";
-import { getTmdbBannerImageUrl } from "./media.utils";
+import { getTmdbBannerImageUrl } from "./../media.utils";
 
 export default function MediaPresentationImage({
   media,
 }: React.PropsWithChildren<{ media: Media; height?: number }>) {
+  const insets = useSafeAreaInsets();
+
   return (
     <ImageBackground
-      style={[styles.image, { flex: 1, margin: 0 }]}
+      style={[styles.image, { flex: 1, margin: 0, paddingTop: insets.top }]}
       source={{
         uri: getTmdbBannerImageUrl(media),
       }}
@@ -22,12 +25,12 @@ export default function MediaPresentationImage({
       <LinearGradient
         // Button Linear Gradient
         colors={[
-          "rgba(255,255,255,0)",
-          "rgba(0,0,0,0.4)",
-          "rgba(0,0,0,0.55)",
-          "rgba(0,0,0,0.75)",
-          "rgba(0,0,0,0.85)",
-          "rgba(0,0,0,1)",
+          "rgba(34,32,39,0.0)",
+          "rgba(34,32,39,0.2)",
+          "rgba(34,32,39,0.45)",
+          "rgba(34,32,39,0.75)",
+          "rgba(34,32,39,0.85)",
+          "rgba(34,32,39,1)",
         ]}
         locations={[0, 0.49, 0.55, 0.75, 0.85, 0.98]}
         start={[0, 0]}

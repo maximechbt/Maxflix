@@ -8,20 +8,29 @@ import {
 } from "react-native";
 
 import { Text } from "../../../shared/components/Text.component";
-import { Media } from "../../../shared/types/media.type";
-import { getTmdbBannerImageUrl } from "./media.utils";
+import { useCustomTheme } from "../../../shared/themes/theme";
+import { Media } from "../media.type";
+import { getTmdbBannerImageUrl } from "../media.utils";
 
 export default function MediaBanner({
   media,
 }: React.PropsWithChildren<{ media: Media }>) {
   const navigation = useNavigation();
+  const theme = useCustomTheme();
+
   return (
     <Pressable
       style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1.0 }]}
       onPress={() => navigation.navigate("Media", { media })}
     >
       <ImageBackground
-        style={[styles.image]}
+        style={[
+          styles.image,
+          {
+            padding: theme.spacing.m,
+          },
+        ]}
+        imageStyle={{ borderRadius: 5 }}
         source={{
           uri: getTmdbBannerImageUrl(media),
         }}
@@ -36,7 +45,6 @@ const styles = StyleSheet.create({
   image: {
     justifyContent: "flex-end",
     alignItems: "flex-end",
-    padding: 20,
     height: 220,
     width: Dimensions.get("window").width,
   },

@@ -2,10 +2,10 @@ import { createTheme, useTheme } from "@shopify/restyle";
 
 const palette = {
   red: "#D81F26",
-  black: "black",
+  black: "#22201D",
   white: "#F0F2F3",
   greyWhite: "#D0D0D0",
-  greyTransparent: "rgba(95, 88, 83, 0.45)",
+  greyTransparent: "rgba(95, 88, 83, 0.7)",
 };
 
 const theme = createTheme({
@@ -15,6 +15,7 @@ const theme = createTheme({
     text: palette.white,
     textDescription: palette.greyWhite,
     chipsBackground: palette.greyTransparent,
+    tabBar: "rgba(0, 0, 0, 0.95)",
   },
   spacing: {
     s: 6,
@@ -46,6 +47,11 @@ const theme = createTheme({
     },
     description: {
       fontSize: 16,
+      color: "textDescription",
+      lineHeight: 19,
+    },
+    littleButton: {
+      fontSize: 18,
       color: "textDescription",
     },
   },

@@ -1,4 +1,4 @@
-import { FontAwesome } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   NavigationContainer,
@@ -7,7 +7,6 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { Image } from "react-native";
 
 import {
   RootStackParamList,
@@ -16,8 +15,8 @@ import {
 } from "../../../types";
 import HomeScreen from "../../modules/home/Home.screen";
 import MediaScreen from "../../modules/media/screens/Media.screen";
-import { useCustomTheme } from "../themes/theme";
 import LinkingConfiguration from "./LinkingConfiguration";
+import { TabBar } from "./TabBar.component";
 
 export default function Navigation({ colorScheme }: { colorScheme: string }) {
   return (
@@ -29,21 +28,6 @@ export default function Navigation({ colorScheme }: { colorScheme: string }) {
     </NavigationContainer>
   );
 }
-
-const Header = () => {
-  return (
-    <Image
-      style={{
-        height: 35,
-        width: 35,
-        margin: 5,
-        marginBottom: 15,
-        marginTop: 10,
-      }}
-      source={require("../../assets/images/logo.jpg")}
-    />
-  );
-};
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -67,15 +51,13 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
-  const { colors } = useCustomTheme();
-
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: colors.accent,
         headerShown: true,
       }}
+      tabBar={(props) => <TabBar {...props} />}
     >
       <BottomTab.Screen
         name="Home"
@@ -83,10 +65,19 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<"Home">) => ({
           title: "Home",
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          headerTitle: Header,
-          headerStyle: {
-            backgroundColor: colors.mainBackground,
-          },
+          headerShown: false,
+          tabBarLabelStyle: { marginBottom: 2 },
+        })}
+      />
+      <BottomTab.Screen
+        name="Discover"
+        component={HomeScreen}
+        options={({ navigation }: RootTabScreenProps<"Discover">) => ({
+          title: "Search",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="playcircleo" color={color} />
+          ),
+          headerShown: false,
           tabBarLabelStyle: { marginBottom: 2 },
         })}
       />
@@ -95,11 +86,30 @@ function BottomTabNavigator() {
         component={HomeScreen}
         options={({ navigation }: RootTabScreenProps<"Search">) => ({
           title: "Search",
-          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
-          headerTitle: Header,
-          headerStyle: {
-            backgroundColor: colors.mainBackground,
-          },
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="search1" color={color} />
+          ),
+          headerShown: false,
+          tabBarLabelStyle: { marginBottom: 2 },
+        })}
+      />
+      <BottomTab.Screen
+        name="Favorite"
+        component={HomeScreen}
+        options={({ navigation }: RootTabScreenProps<"Favorite">) => ({
+          title: "Search",
+          tabBarIcon: ({ color }) => <TabBarIcon name="hearto" color={color} />,
+          headerShown: false,
+          tabBarLabelStyle: { marginBottom: 2 },
+        })}
+      />
+      <BottomTab.Screen
+        name="Profil"
+        component={HomeScreen}
+        options={({ navigation }: RootTabScreenProps<"Profil">) => ({
+          title: "Search",
+          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
+          headerShown: false,
           tabBarLabelStyle: { marginBottom: 2 },
         })}
       />
@@ -108,8 +118,8 @@ function BottomTabNavigator() {
 }
 
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
+  name: React.ComponentProps<typeof AntDesign>["name"];
   color: string;
 }) {
-  return <FontAwesome size={20} style={{ marginBottom: -3 }} {...props} />;
+  return <AntDesign size={25} style={{ marginBottom: -3 }} {...props} />;
 }

@@ -26,6 +26,7 @@
     "expo": "~44.0.0",
     "expo-asset": "~8.4.6",
     "expo-auth-session": "~3.5.0",
+    "expo-blur": "~11.0.0",
     "expo-constants": "~13.0.0",
     "expo-font": "~10.0.4",
     "expo-linear-gradient": "~11.0.3",

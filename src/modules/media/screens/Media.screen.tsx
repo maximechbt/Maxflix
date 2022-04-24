@@ -1,7 +1,9 @@
+import { StatusBar } from "expo-status-bar";
 import * as React from "react";
 import {
   NativeScrollEvent,
   NativeSyntheticEvent,
+  Pressable,
   ScrollView,
 } from "react-native";
 import Animated, {
@@ -36,14 +38,14 @@ export default function MediaScreen({
     };
   });
 
-  function onScroll(_e: NativeSyntheticEvent<NativeScrollEvent>) {
+  function seeMore() {
     imageHeight.value = 350;
   }
 
   return (
     <Container paddingBottom="m">
-      <ScrollView onScroll={onScroll} stickyHeaderIndices={[0]}>
-        <Container>
+      <View flex={1}>
+        <View>
           <Animated.View style={[[animatedStyle]]}>
             <MediaPresentationImage media={media} />
           </Animated.View>
@@ -53,14 +55,25 @@ export default function MediaScreen({
               onPress={() => console.log("test")}
             />
           </View>
-        </Container>
-        <Text paddingHorizontal="m" paddingVertical="s" variant={"subtitle"}>
-          Synopsys
-        </Text>
-        <Text paddingHorizontal="m" paddingVertical="s" variant={"description"}>
-          {media.overview}
-        </Text>
-      </ScrollView>
+        </View>
+        <Pressable onPress={seeMore}>
+          <Text paddingHorizontal="m" paddingVertical="s" variant={"subtitle"}>
+            Synopsis
+          </Text>
+          <Text
+            paddingHorizontal="m"
+            paddingVertical="s"
+            variant={"description"}
+            ellipsizeMode="tail"
+            numberOfLines={7}
+          >
+            {media.overview}
+          </Text>
+          <View width="100%" alignItems={"flex-end"} p="m" paddingRight={"l"}>
+            <Text variant={"littleButton"}>Voir plus</Text>
+          </View>
+        </Pressable>
+      </View>
     </Container>
   );
 }

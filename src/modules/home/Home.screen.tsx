@@ -1,9 +1,12 @@
 import { compact } from "lodash";
+import React from "react";
 import { FlatList, ScrollView } from "react-native";
 
 import { RootTabScreenProps } from "../../../types";
 import { Container } from "../../shared/components/Container.component";
+import { View } from "../../shared/components/View.components";
 import MediaBanner from "../media/components/MediaBanner.component";
+import MediaCaroussel from "../media/components/MediaCaroussel.components";
 import MediasPreview from "../media/components/MediasPreview.component";
 import {
   usePopularMovies,
@@ -18,15 +21,12 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
   const { data: popularMovies } = usePopularMovies();
 
   return (
-    <Container paddingBottom="m">
-      <ScrollView>
-        <FlatList
-          data={compact([trendingShows?.best, trendingMovies?.best])}
-          pagingEnabled={true}
-          horizontal={true}
-          keyExtractor={(media) => media?.ids.slug}
-          renderItem={({ item }) => <MediaBanner media={item} />}
+    <Container paddingTop="xl">
+      <ScrollView contentContainerStyle={{ paddingTop: 20, paddingBottom: 70 }}>
+        <MediaCaroussel
+          medias={compact([trendingShows?.best, trendingMovies?.best])}
         />
+
         <MediasPreview
           medias={trendingShows?.medias}
           title="Séries en tendances"
