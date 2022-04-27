@@ -40,7 +40,7 @@ export default function MediaPresentationImage({
         <View width="100%" justifyContent="flex-start" p={"m"}>
           <BackButton />
         </View>
-        <View marginVertical="xl">
+        <View marginVertical="m">
           <Text variant="title" fontSize={40} textAlign="center">
             {media.title}
           </Text>

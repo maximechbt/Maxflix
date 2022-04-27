@@ -14,7 +14,7 @@ import { Media } from "./src/modules/media/media.type";
 
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList { }
+    interface RootParamList extends RootStackParamList {}
   }
 }
 

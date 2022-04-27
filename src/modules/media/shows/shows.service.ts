@@ -5,7 +5,7 @@ import { TraktInstance } from "../../../shared/api/trakt.api";
 import { TraktMedia } from "../media.type";
 import { Show, TMDBShow } from "./shows.type";
 
-async function populateWithTMDB(shows: TraktMedia[]): Promise<Show[]> {
+export async function populateWithTMDB(shows: TraktMedia[]): Promise<Show[]> {
   return compact(
     await Promise.all(
       shows.map(async (show: TraktMedia) => {
@@ -24,7 +24,7 @@ async function populateWithTMDB(shows: TraktMedia[]): Promise<Show[]> {
             trackObject: show,
             type: "show",
           };
-        } catch (error) { }
+        } catch (error) {}
       })
     )
   );

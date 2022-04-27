@@ -9,7 +9,7 @@ export type TMDBShow = {
   genres: { id: number; name: string }[];
 };
 
-export interface Show extends Media { }
+export interface Show extends Media {}
 
 export type SonarrShow = {
   id: number;

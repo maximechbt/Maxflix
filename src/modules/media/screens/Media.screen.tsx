@@ -1,11 +1,5 @@
-import { StatusBar } from "expo-status-bar";
 import * as React from "react";
-import {
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  Pressable,
-  ScrollView,
-} from "react-native";
+import { Pressable } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,

@@ -30,7 +30,6 @@ export default function MediaBanner({
             padding: theme.spacing.m,
           },
         ]}
-        imageStyle={{ borderRadius: 5 }}
         source={{
           uri: getTmdbBannerImageUrl(media),
         }}

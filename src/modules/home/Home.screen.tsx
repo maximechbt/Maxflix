@@ -1,11 +1,9 @@
 import { compact } from "lodash";
 import React from "react";
-import { FlatList, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 
 import { RootTabScreenProps } from "../../../types";
 import { Container } from "../../shared/components/Container.component";
-import { View } from "../../shared/components/View.components";
-import MediaBanner from "../media/components/MediaBanner.component";
 import MediaCaroussel from "../media/components/MediaCaroussel.components";
 import MediasPreview from "../media/components/MediasPreview.component";
 import {

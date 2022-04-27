@@ -2,7 +2,6 @@ import axios from "axios";
 import Constants from "expo-constants";
 
 const TRAKT_API_URL = "https://api.trakt.tv";
-console.log(JSON.stringify(Constants?.manifest?.extra));
 
 export const TraktInstance = axios.create({
   baseURL: TRAKT_API_URL,

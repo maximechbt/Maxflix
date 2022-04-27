@@ -15,6 +15,7 @@ import {
 } from "../../../types";
 import HomeScreen from "../../modules/home/Home.screen";
 import MediaScreen from "../../modules/media/screens/Media.screen";
+import SearchScreen from "../../modules/search/Search.screen";
 import LinkingConfiguration from "./LinkingConfiguration";
 import { TabBar } from "./TabBar.component";
 
@@ -83,7 +84,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Search"
-        component={HomeScreen}
+        component={SearchScreen}
         options={({ navigation }: RootTabScreenProps<"Search">) => ({
           title: "Search",
           tabBarIcon: ({ color }) => (

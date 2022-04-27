@@ -8,7 +8,7 @@ export type TMDBMovie = {
   genres: { id: number; name: string }[];
 };
 
-export interface Movie extends Media { }
+export interface Movie extends Media {}
 
 export type RadarrMovie = {
   id: number;

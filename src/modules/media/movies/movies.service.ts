@@ -29,7 +29,7 @@ export async function populateWithTMDB(movies: TraktMedia[]): Promise<Movie[]> {
             trackObject: movie,
             type: "movie",
           };
-        } catch (error) { }
+        } catch (error) {}
       })
     )
   );
