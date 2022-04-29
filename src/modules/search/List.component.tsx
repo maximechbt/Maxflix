@@ -34,7 +34,7 @@ function getDefaultMedias({
         ...(trendingShows || []),
         ...(popularMovies || []),
       ],
-      "ids.slug"
+      "id"
     )
   );
 }
@@ -74,7 +74,7 @@ export default function List({ search }: { search: string }) {
         data={search ? searchMedias : defaultMedias}
         numColumns={3}
         renderItem={({ item }) => <MediaPoster item={item} />}
-        keyExtractor={(movie) => movie.ids.slug}
+        keyExtractor={(movie) => String(movie.id)}
       />
     );
   };

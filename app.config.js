@@ -32,7 +32,6 @@ module.exports = {
       favicon: "./src/assets/images/icon.png",
     },
     extra: {
-      TRAKT_API_KEY: process.env.TRAKT_API_KEY,
       TMDB_API_KEY: process.env.TMDB_API_KEY,
 
       RADARR_API_URL: process.env.RADARR_API_URL,

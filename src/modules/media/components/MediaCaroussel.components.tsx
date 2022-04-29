@@ -19,7 +19,7 @@ export default function MediaCaroussel({ medias }: { medias: Media[] }) {
         data={medias}
         pagingEnabled={true}
         horizontal={true}
-        keyExtractor={(media) => media?.ids.slug}
+        keyExtractor={(media) => String(media.id)}
         renderItem={({ item }) => <MediaBanner media={item} />}
         showsHorizontalScrollIndicator={false}
       />
@@ -32,7 +32,7 @@ export default function MediaCaroussel({ medias }: { medias: Media[] }) {
       >
         {medias.map((media, index) => (
           <View
-            key={media.ids.slug}
+            key={media.id}
             backgroundColor={
               currentIndex === index ? "text" : "chipsBackground"
             }

@@ -23,7 +23,7 @@ export default function MediasPreview({
         data={medias}
         horizontal={true}
         renderItem={({ item }) => <MediaPoster item={item} />}
-        keyExtractor={(movie) => movie.ids.slug}
+        keyExtractor={(movie) => String(movie.id)}
         contentContainerStyle={{ paddingHorizontal: 10 }}
         showsHorizontalScrollIndicator={false}
       />

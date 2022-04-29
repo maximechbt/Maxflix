@@ -3,10 +3,10 @@ import { maxBy } from "lodash";
 import { Media } from "./media.type";
 
 export function getMediaWithBest<T extends Media>(medias: T[]) {
-  const best = maxBy(medias, "watchers");
+  const best = maxBy(medias, "popularity");
 
   return {
-    medias: medias.filter((media) => media.ids.slug !== best?.ids.slug),
+    medias: medias.filter((media) => media.id !== best?.id),
     best,
   };
 }

@@ -52,11 +52,10 @@ export default function MediaPresentationImage({
             flexWrap={"wrap"}
             justifyContent="center"
           >
-            <Chips label={String(media.year)} />
-            <Chips label={media.type === "show" ? "Série" : "Film"} />
-            {media.genres.map((genre) => (
-              <Chips key={genre.id} label={genre.name} />
-            ))}
+            <Chips label={media.media_type === "tv" ? "Série" : "Film"} />
+            {Boolean(media.vote_average) && (
+              <Chips label={`${media.vote_average}/10`} />
+            )}
           </View>
         </View>
       </LinearGradient>

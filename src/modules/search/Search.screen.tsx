@@ -17,7 +17,7 @@ export default function SearchScreen() {
   });
 
   return (
-    <Container paddingTop="xl">
+    <Container paddingTop="xl" paddingBottom="xxl">
       <TextInput
         style={[
           styles.input,
