@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@shopify/restyle";
 import { StatusBar } from "expo-status-bar";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -19,7 +20,9 @@ export default function App() {
       <SafeAreaProvider style={{ backgroundColor: "black" }}>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme}>
-            <Navigation colorScheme={"dark"} />
+            <GestureHandlerRootView style={{ flex: 1 }}>
+              <Navigation colorScheme={"dark"} />
+            </GestureHandlerRootView>
             <StatusBar backgroundColor="transparent" style="light" />
           </ThemeProvider>
         </QueryClientProvider>

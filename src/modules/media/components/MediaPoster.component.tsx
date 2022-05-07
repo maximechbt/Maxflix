@@ -1,14 +1,19 @@
 import * as React from "react";
 import { Image, StyleSheet } from "react-native";
 
+import { Media } from "../media.type";
 import { getTmdbPosterImageUrl } from "./../media.utils";
 
 export default function MediaPoster({
   item,
-}: React.PropsWithChildren<{ item: { poster_path: string } }>) {
+  height = 180,
+}: React.PropsWithChildren<{
+  item: Media;
+  height?: number;
+}>) {
   return (
     <Image
-      style={[styles.image, { height: 180, width: 180 / 1.5 }]}
+      style={[styles.image, { height, width: height / 1.5 }]}
       source={{
         uri: getTmdbPosterImageUrl(item),
       }}

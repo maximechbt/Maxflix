@@ -13,6 +13,7 @@ import {
   RootTabParamList,
   RootTabScreenProps,
 } from "../../../types";
+import DiscoverScreen from "../../modules/discover/discover.screen";
 import HomeScreen from "../../modules/home/Home.screen";
 import MediaScreen from "../../modules/media/screens/Media.screen";
 import SearchScreen from "../../modules/search/Search.screen";
@@ -72,9 +73,9 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Discover"
-        component={HomeScreen}
+        component={DiscoverScreen}
         options={({ navigation }: RootTabScreenProps<"Discover">) => ({
-          title: "Search",
+          title: "Discover",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="playcircleo" color={color} />
           ),
@@ -98,7 +99,7 @@ function BottomTabNavigator() {
         name="Favorite"
         component={HomeScreen}
         options={({ navigation }: RootTabScreenProps<"Favorite">) => ({
-          title: "Search",
+          title: "Favorite",
           tabBarIcon: ({ color }) => <TabBarIcon name="hearto" color={color} />,
           headerShown: false,
           tabBarLabelStyle: { marginBottom: 2 },
@@ -108,7 +109,7 @@ function BottomTabNavigator() {
         name="Profil"
         component={HomeScreen}
         options={({ navigation }: RootTabScreenProps<"Profil">) => ({
-          title: "Search",
+          title: "Profil",
           tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
           headerShown: false,
           tabBarLabelStyle: { marginBottom: 2 },
