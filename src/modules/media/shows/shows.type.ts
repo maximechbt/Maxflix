@@ -11,6 +11,28 @@ export type TMDBShow = {
 
 export interface Show extends Media {}
 
+export interface Season {
+  overview?: string;
+  season_number: number;
+  name: string;
+  id: number;
+  episode_count: number;
+  poster_path: string;
+}
+
+export interface ShowDetails {
+  production_countries: { iso_3166_1: string; name: string }[];
+  seasons: Season[];
+}
+
+export interface ShowCast {
+  id: number;
+  name: string;
+  popularity: number;
+  profile_path: string;
+  character: string;
+}
+
 export type SonarrShow = {
   id: number;
   title: string;

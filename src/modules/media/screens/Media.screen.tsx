@@ -12,6 +12,7 @@ import { Button } from "../../../shared/components/Button.component";
 import { Container } from "../../../shared/components/Container.component";
 import { Text } from "../../../shared/components/Text.component";
 import { View } from "../../../shared/components/View.components";
+import { MediaDetails } from "../components/MediaDetails.component";
 import MediaPresentationImage from "../components/MediaPresentationImage.component";
 
 export default function MediaScreen({
@@ -21,6 +22,8 @@ export default function MediaScreen({
   const {
     params: { media },
   } = route;
+  const [showDetails, setShowDetails] = React.useState(false);
+
   const imageHeight = useSharedValue(550);
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -33,6 +36,7 @@ export default function MediaScreen({
   });
 
   function seeMore() {
+    setShowDetails(true);
     imageHeight.value = 350;
   }
 
@@ -50,23 +54,31 @@ export default function MediaScreen({
             />
           </View>
         </View>
-        <Pressable onPress={seeMore}>
-          <Text paddingHorizontal="m" paddingVertical="s" variant={"subtitle"}>
-            Synopsis
-          </Text>
-          <Text
-            paddingHorizontal="m"
-            paddingVertical="s"
-            variant={"description"}
-            ellipsizeMode="tail"
-            numberOfLines={7}
-          >
-            {media.overview}
-          </Text>
-          <View width="100%" alignItems={"flex-end"} p="m" paddingRight={"l"}>
-            <Text variant={"littleButton"}>Voir plus</Text>
-          </View>
-        </Pressable>
+        {showDetails ? (
+          <MediaDetails media={media} />
+        ) : (
+          <Pressable onPress={seeMore}>
+            <Text
+              paddingHorizontal="m"
+              paddingVertical="s"
+              variant={"subtitle"}
+            >
+              Synopsis
+            </Text>
+            <Text
+              paddingHorizontal="m"
+              paddingVertical="s"
+              variant={"description"}
+              ellipsizeMode="tail"
+              numberOfLines={7}
+            >
+              {media.overview}
+            </Text>
+            <View width="100%" alignItems={"flex-end"} p="m" paddingRight={"l"}>
+              <Text variant={"littleButton"}>Voir plus</Text>
+            </View>
+          </Pressable>
+        )}
       </View>
     </Container>
   );

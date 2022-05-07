@@ -15,6 +15,6 @@ export function getTmdbBannerImageUrl(media: Media) {
   return `https://image.tmdb.org/t/p/original/${media?.backdrop_path}?&language=fr-FR`;
 }
 
-export function getTmdbPosterImageUrl(media: Media) {
+export function getTmdbPosterImageUrl(media: { poster_path: string }) {
   return `https://image.tmdb.org/t/p/w500${media?.poster_path}?&language=fr-FR`;
 }

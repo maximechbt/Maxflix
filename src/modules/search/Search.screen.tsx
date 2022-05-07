@@ -23,6 +23,7 @@ export default function SearchScreen() {
           styles.input,
           {
             margin: theme.spacing.m,
+            marginTop: 0,
             padding: theme.spacing.m,
           },
         ]}
@@ -42,10 +43,10 @@ export default function SearchScreen() {
 
 const styles = StyleSheet.create({
   input: {
-    height: 45,
+    height: 55,
     borderWidth: 0.3,
     color: "white",
     borderColor: "white",
-    borderRadius: 8,
+    borderRadius: 6,
   },
 });

@@ -11,3 +11,9 @@ export const useTrendingShows = () =>
 
 export const usePopularShows = () =>
   useQuery("popularShows", ShowService.getPopularShows);
+
+export const useShowDetails = (id: number) =>
+  useQuery(["show", id], () => ShowService.getShowDetails(id));
+
+export const useShowCast = (id: number) =>
+  useQuery(["showCast", id], () => ShowService.getShowCast(id));

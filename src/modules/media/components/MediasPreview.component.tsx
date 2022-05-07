@@ -1,5 +1,6 @@
+import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
-import { FlatList } from "react-native";
+import { FlatList, Pressable } from "react-native";
 
 import { Container } from "../../../shared/components/Container.component";
 import { Text } from "../../../shared/components/Text.component";
@@ -13,6 +14,8 @@ export default function MediasPreview({
   title: string;
   medias?: Media[];
 }>) {
+  const navigation = useNavigation();
+
   return (
     <Container height={240}>
       <Text variant="subtitle" margin="s" marginTop="m">
@@ -22,7 +25,14 @@ export default function MediasPreview({
       <FlatList
         data={medias}
         horizontal={true}
-        renderItem={({ item }) => <MediaPoster item={item} />}
+        renderItem={({ item }) => (
+          <Pressable
+            style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1.0 }]}
+            onPress={() => navigation.navigate("Media", { media: item })}
+          >
+            <MediaPoster item={item} />
+          </Pressable>
+        )}
         keyExtractor={(movie) => String(movie.id)}
         contentContainerStyle={{ paddingHorizontal: 10 }}
         showsHorizontalScrollIndicator={false}

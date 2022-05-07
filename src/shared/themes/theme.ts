@@ -18,10 +18,11 @@ const theme = createTheme({
     tabBar: "rgba(0, 0, 0, 0.95)",
   },
   spacing: {
+    none: 0,
     s: 6,
     m: 12,
     l: 24,
-    xl: 40,
+    xl: 50,
     xxl: 80,
   },
   breakpoints: {

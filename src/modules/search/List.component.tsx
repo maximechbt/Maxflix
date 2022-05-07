@@ -1,7 +1,8 @@
+import { useNavigation } from "@react-navigation/native";
 import shuffle from "lodash/shuffle";
 import uniqBy from "lodash/uniqBy";
 import * as React from "react";
-import { FlatList } from "react-native";
+import { FlatList, Pressable } from "react-native";
 
 import { Text } from "../../shared/components/Text.component";
 import { View } from "../../shared/components/View.components";
@@ -40,6 +41,7 @@ function getDefaultMedias({
 }
 
 export default function List({ search }: { search: string }) {
+  const navigation = useNavigation();
   const debounceSearch = useDebounce(search, 500);
 
   const { data: searchMedias, isLoading } = useMediasByText(debounceSearch);
@@ -73,7 +75,14 @@ export default function List({ search }: { search: string }) {
       <FlatList
         data={search ? searchMedias : defaultMedias}
         numColumns={3}
-        renderItem={({ item }) => <MediaPoster item={item} />}
+        renderItem={({ item }) => (
+          <Pressable
+            style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1.0 }]}
+            onPress={() => navigation.navigate("Media", { media: item })}
+          >
+            <MediaPoster item={item} />
+          </Pressable>
+        )}
         keyExtractor={(movie) => String(movie.id)}
       />
     );

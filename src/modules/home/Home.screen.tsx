@@ -19,8 +19,8 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<"Home">) {
   const { data: popularMovies } = usePopularMovies();
 
   return (
-    <Container paddingTop="xl">
-      <ScrollView contentContainerStyle={{ paddingTop: 20, paddingBottom: 70 }}>
+    <Container paddingTop="xl" paddingBottom="xxl">
+      <ScrollView>
         <MediaCaroussel
           medias={compact([trendingShows?.best, trendingMovies?.best])}
         />
