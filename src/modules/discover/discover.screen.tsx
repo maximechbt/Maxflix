@@ -14,6 +14,7 @@ import Animated, {
 import { snapPoint } from "react-native-redash";
 
 import { Container } from "../../shared/components/Container.component";
+import { Text } from "../../shared/components/Text.component";
 import MediaPoster from "../media/components/MediaPoster.component";
 import { usePopularMovies } from "../media/movies/movies.hook";
 import { Movie } from "../media/movies/movies.type";
@@ -21,7 +22,7 @@ import { usePopularShows } from "../media/shows/shows.hook";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = Dimensions.get("window").height;
-const CARD_HEIGHT = 500;
+const CARD_HEIGHT = 550;
 const CARD_WIDTH = CARD_HEIGHT / 1.5;
 const DURATION = 150;
 const SNAP_POINTS = [-SCREEN_WIDTH, 0, SCREEN_WIDTH];
@@ -36,7 +37,8 @@ export default function DiscoverScreen() {
   );
 
   return (
-    <Container>
+    <Container alignItems="center" paddingTop="xxl">
+      <Text variant={"title"}>Discover</Text>
       {medias.map((movie, index) => (
         <CardMedia key={movie.id} media={movie} index={index} />
       ))}
@@ -48,7 +50,7 @@ function CardMedia({ media, index }: { media: Movie; index: number }) {
   const navigation = useNavigation();
   const offset = useSharedValue({ x: 0, y: 0 });
   const translateX = useSharedValue(0);
-  const translateY = useSharedValue(-SCREEN_HEIGHT);
+  const translateY = useSharedValue(-SCREEN_HEIGHT * 1.1);
   const scale = useSharedValue(1);
   const rotateX = useSharedValue(25);
   const rotateZ = useSharedValue(0);
