@@ -1,10 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
 import _ from "lodash";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Dimensions, Pressable, StyleSheet, View } from "react-native";
 import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import Animated, {
   Easing,
+  useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -22,17 +23,22 @@ import { usePopularShows } from "../media/shows/shows.hook";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = Dimensions.get("window").height;
-const CARD_HEIGHT = 550;
+const CARD_HEIGHT = 500;
 const CARD_WIDTH = CARD_HEIGHT / 1.5;
-const DURATION = 150;
+const DURATION = 300;
 const SNAP_POINTS = [-SCREEN_WIDTH, 0, SCREEN_WIDTH];
 
 export default function DiscoverScreen() {
   const { data: movies } = usePopularMovies();
   const { data: shows } = usePopularShows();
+  const shuffleBack = useSharedValue(false);
 
   const medias = useMemo(
-    () => _.shuffle([...(movies || []), ...(shows || [])]),
+    () =>
+      _.chain([...(movies || []), ...(shows || [])])
+        .shuffle()
+        .take(10)
+        .value(),
     [movies, shows]
   );
 
@@ -40,17 +46,30 @@ export default function DiscoverScreen() {
     <Container alignItems="center" paddingTop="xxl">
       <Text variant={"title"}>Discover</Text>
       {medias.map((movie, index) => (
-        <CardMedia key={movie.id} media={movie} index={index} />
+        <CardMedia
+          key={movie.id}
+          media={movie}
+          index={index}
+          shuffleBack={shuffleBack}
+        />
       ))}
     </Container>
   );
 }
 
-function CardMedia({ media, index }: { media: Movie; index: number }) {
+function CardMedia({
+  media,
+  index,
+  shuffleBack,
+}: {
+  media: Movie;
+  index: number;
+  shuffleBack: Animated.SharedValue<boolean>;
+}) {
   const navigation = useNavigation();
   const offset = useSharedValue({ x: 0, y: 0 });
   const translateX = useSharedValue(0);
-  const translateY = useSharedValue(-SCREEN_HEIGHT * 1.1);
+  const translateY = useSharedValue(-SCREEN_HEIGHT * 1.3);
   const scale = useSharedValue(1);
   const rotateX = useSharedValue(25);
   const rotateZ = useSharedValue(0);
@@ -84,16 +103,33 @@ function CardMedia({ media, index }: { media: Movie; index: number }) {
       rotateX.value = withTiming(25);
       scale.value = withTiming(1, {}, () => {
         const isLast = index === 0;
-        // const isSwipedLeftOrRight = dest !== 0;
-        // if (isLast && isSwipedLeftOrRight) {
-        //   shuffleBack.value = true;
-        // }
+        const isSwipedLeftOrRight = dest !== 0;
+
+        if (isLast && isSwipedLeftOrRight) {
+          shuffleBack.value = true;
+        }
       });
     });
 
+  useAnimatedReaction(
+    () => shuffleBack.value,
+    (v) => {
+      if (v) {
+        const duration = 150 * index;
+        translateX.value = withDelay(
+          duration,
+          withSpring(0, {}, () => {
+            shuffleBack.value = false;
+          })
+        );
+        rotateZ.value = withDelay(duration, withSpring(theta));
+      }
+    }
+  );
+
   const style = useAnimatedStyle(() => ({
     transform: [
-      { perspective: 2000 },
+      { perspective: 1000 },
       { rotateX: `${rotateX.value}deg` },
       { translateX: translateX.value },
       { translateY: translateY.value },
