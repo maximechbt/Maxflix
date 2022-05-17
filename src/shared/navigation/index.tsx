@@ -81,6 +81,7 @@ function BottomTabNavigator() {
           ),
           headerShown: false,
           tabBarLabelStyle: { marginBottom: 2 },
+          lazy: false,
         })}
       />
       <BottomTab.Screen

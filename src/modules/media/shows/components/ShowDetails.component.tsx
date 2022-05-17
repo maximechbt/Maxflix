@@ -11,11 +11,7 @@ import ShowCastList from "./ShowCastList.component";
 type Props = { show: Media };
 
 export const ShowDetails = ({ show }: Props) => {
-  const { data: showDetails } = useShowDetails(show.id);
-
-  const numberOfSeasons = showDetails?.seasons?.filter(
-    (season) => season.season_number
-  ).length;
+  const { data: showDetails, isLoading } = useShowDetails(show.id);
 
   return (
     <Container padding={"none"} margin="none">
@@ -27,18 +23,15 @@ export const ShowDetails = ({ show }: Props) => {
           {show.overview}
         </Text>
 
-        <Text paddingHorizontal="m" paddingVertical="m" variant={"subtitle"}>
-          Casting
-        </Text>
-
         <ShowCastList show={show} />
 
-        <Text paddingHorizontal="m" paddingVertical="s" variant={"subtitle"}>
-          Saisons ({numberOfSeasons})
-        </Text>
-        <SeasonsList
-          seasons={showDetails?.seasons.filter((season) => season.poster_path)}
-        />
+        {!isLoading && (
+          <SeasonsList
+            seasons={showDetails?.seasons.filter(
+              (season) => season.poster_path
+            )}
+          />
+        )}
       </ScrollView>
     </Container>
   );

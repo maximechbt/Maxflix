@@ -1,10 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import _ from "lodash";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Dimensions, Pressable, StyleSheet, View } from "react-native";
 import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import Animated, {
-  Easing,
   useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
@@ -22,10 +21,8 @@ import { Movie } from "../media/movies/movies.type";
 import { usePopularShows } from "../media/shows/shows.hook";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
-const SCREEN_HEIGHT = Dimensions.get("window").height;
 const CARD_HEIGHT = 500;
 const CARD_WIDTH = CARD_HEIGHT / 1.5;
-const DURATION = 300;
 const SNAP_POINTS = [-SCREEN_WIDTH, 0, SCREEN_WIDTH];
 
 export default function DiscoverScreen() {
@@ -66,23 +63,14 @@ function CardMedia({
   index: number;
   shuffleBack: Animated.SharedValue<boolean>;
 }) {
+  const theta = -10 + Math.random() * 15;
   const navigation = useNavigation();
   const offset = useSharedValue({ x: 0, y: 0 });
   const translateX = useSharedValue(0);
-  const translateY = useSharedValue(-SCREEN_HEIGHT * 1.3);
+  const translateY = useSharedValue(0);
   const scale = useSharedValue(1);
   const rotateX = useSharedValue(25);
-  const rotateZ = useSharedValue(0);
-  const delay = index * DURATION;
-  const theta = -10 + Math.random() * 15;
-
-  useEffect(() => {
-    translateY.value = withDelay(
-      delay,
-      withTiming(0, { duration: DURATION, easing: Easing.inOut(Easing.ease) })
-    );
-    rotateZ.value = withDelay(delay, withSpring(theta));
-  }, [delay, index, rotateZ, theta, translateY]);
+  const rotateZ = useSharedValue(theta);
 
   const gesture = Gesture.Pan()
     .onBegin(() => {
